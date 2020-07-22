@@ -1,15 +1,18 @@
 <?php
 require(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
 require_login();
-include('../tables/tablerecruitmentprocess.php');
-include_once('../table.php');
+//include('../tables/tablerecruitmentprocess.php');
+//include_once('../table.php');
 
 global $DB, $PAGE, $OUTPUT, $CFG, $USER;
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/recruitmentprocess.php');
 $PAGE->set_title('Lecturer Recruitment');
+$PAGE->requires->css('/local/lecrec/assets/css/jquery.dataTables.min.css');
 $PAGE->requires->jquery();
+$PAGE->requires->js('/local/lecrec/assets/js/jquery.dataTables.min.js',true);
+
 $context = context_system::instance();
 $user = $USER->id;
 
@@ -26,11 +29,11 @@ if (has_capability('local/lecrec:manager', $context)) {
 
     $table = new html_table();
     $table->id = 'my_table';
-    $table->attributes['class'] = 'table table-sm ';
+  //  $table->attributes['class'] = 'table table-sm ';
 
     $records = $DB->get_records_select("lr_job_postings", 'director_id = ?', array($user));
     $table->head = array('Posting Name', 'expected_hours', 'Number of Applications');
-    $table->align = array('left', 'left', 'left');
+    $table->align = array('center', 'center', 'center');
 
 
 
@@ -67,16 +70,16 @@ if (has_capability('local/lecrec:manager', $context)) {
 
 
 
-    echo $OUTPUT->footer();
+
 } else {
     redirect($CFG->wwwroot);
 }
 
 
-
 ?>
+
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
         $('#my_table tr[RecordID]').each(function() {
             $(this).css('cursor', 'pointer').hover(
                 function() {
@@ -95,7 +98,14 @@ if (has_capability('local/lecrec:manager', $context)) {
                 $('body').append(form);
                 $(form).submit();
 
+
             });
         });
     });
+$(document).ready(function() {
+    $('#my_table').DataTable();
+});
 </script>
+<?php
+echo $OUTPUT->footer();
+?>

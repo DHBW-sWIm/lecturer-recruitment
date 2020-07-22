@@ -53,7 +53,7 @@ function getTableRecruitmentProcess(){
     echo html_writer::table($table);
 }
 ?>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../../assets/JavaScript/jquery.tabledit.js"></script>
 <script>
 
@@ -199,4 +199,4 @@ function getTableRecruitmentProcess(){
 
 
 </script>
-
+-->

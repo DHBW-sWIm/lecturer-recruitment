@@ -5,6 +5,7 @@ require_once("$CFG->libdir/formslib.php");
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/createposting.php');
 $PAGE->set_title('Lecturer Recruitment');
+$PAGE->requires->jquery();
 
 $context = context_system::instance();
 $user = $USER->id;
@@ -21,20 +22,19 @@ class createposting extends moodleform {
 
         $mform = $this->_form; // Don't forget the underscore!
 
-        $sql = "SELECT `name` FROM `mdl_lr_module`";
-        $records = $DB->get_records_sql($sql);
-        $arr = json_decode(json_encode($records), TRUE);
-        $testarray= [];
-        foreach ($arr as $item){
-            foreach ($item as $i){
-                array_push($testarray,$i);
-            }
+
+        $records = $DB->get_records('lr_module');
+        $modules[] = null;
+        foreach ($records as $item){
+            $modules[$item->id] = $item->module_name;
         }
 
-        $mform->addElement('select','module', 'Module', $testarray);
+       $mform->addElement('select','module', 'Module', $modules , array('onchange' => 'javascript:loadSubjects();'));
 
-        $mform->addElement('text', 'lecture', 'Lecture', 'size="50"'); // Add elements to your form
-        $mform->setType('lecture', PARAM_NOTAGS);                   //Set type of element
+
+
+        $mform->addElement('select', 'subject', 'Subject',); // Add elements to your form
+        $mform->setType('subject', PARAM_NOTAGS);                   //Set type of element
 
         $mform->addElement('advcheckbox', 'external', 'External', 'Check if posting is open for external applications', '', array(0, 1));
 
@@ -79,6 +79,10 @@ else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
     print_r($fromform);
 }
+if ($mform->is_submitted())
+{
+  //  $DB->insert_record('lr_job_postings',)
+};
 /*else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
     // or on the first display of the form.
@@ -89,6 +93,32 @@ else if ($fromform = $mform->get_data()) {
     $mform->display();
 }
 */
-echo $OUTPUT->footer();
+?>
+<script>
+    function loadSubjects() {
+        var module_id = $('#id_module option:selected').val();
+        $.ajax({
+            type: "POST",
+            url: "../assets/PHPFunctions/get_subjects.php",
+            datatype: 'html',
+            data: {
+                module_id: module_id
+            },
+            success: function(subjects) {
+                $.each(JSON.parse(subjects), function() {
+                    $("#id_subject").empty();
+                    $("#id_subject").append("<option value='"+this+"'>" + this + "</option>");
+                });
+                           },
+            error: function(error){
 
+
+            }
+        })
+    };
+
+</script>
+
+<?php
+echo $OUTPUT->footer();
 ?>
