@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/lecrec/db" VERSION="20200729" COMMENT="XMLDB file for Moodle local/lecrec"
+
+<XMLDB PATH="local/lecrec/db" VERSION="20200730" COMMENT="XMLDB file for Moodle local/lecrec"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
@@ -27,11 +28,11 @@
         <FIELD NAME="private_postalcode" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_city" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_state" TYPE="char" LENGTH="50" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="private_phonenumber" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="private_cellphone_number" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="private_phonenumber" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="private_cellphone_number" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_mail" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="business_phonenumber" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="business_phonenumber" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="business_mail" TYPE="char" LENGTH="100" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="previous_teaching_activities" TYPE="char" LENGTH="500" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="professional_activities" TYPE="char" LENGTH="500" NOTNULL="false" SEQUENCE="false"/>
@@ -120,16 +121,16 @@
         <FIELD NAME="private_add_str" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_add_zip" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_add_city" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="private_tele" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="private_mobile" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="private_tele" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="private_mobile" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="private_email" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="private_fax" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="private_fax" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company_add_str" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company_add_zip" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company_add_city" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="company_tele" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="company_fax" TYPE="int" LENGTH="9" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="company_tele" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="company_fax" TYPE="int" LENGTH="15" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="company_email" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="education" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
         <FIELD NAME="teaching_activities" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
