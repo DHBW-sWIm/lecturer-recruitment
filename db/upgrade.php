@@ -150,13 +150,13 @@ function xmldb_local_lecrec_upgrade($oldversion)
             $dbman->create_table($table);
         }
         // Rename field company on table lr_lecturer to NEWNAMEGOESHERE.
-          $table = new xmldb_table('lr_lecturer');
+        $table = new xmldb_table('lr_lecturer');
         //$field = new xmldb_field('company_id', XMLDB_TYPE_INTEGER, 9, null, null, null, null, 'private_mail');
 
         // Launch rename field company.
-         $dbman->rename_field($table, $field, 'company');
+        $dbman->rename_field($table, $field, 'company');
 
-         $field = new xmldb_field('company', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'private_mail');
+        $field = new xmldb_field('company', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'private_mail');
 
         //         Launch change of type for field company.
         $dbman->change_field_type($table, $field);
@@ -272,6 +272,10 @@ function xmldb_local_lecrec_upgrade($oldversion)
         upgrade_plugin_savepoint(true, 2020062314, 'local', 'lecrec');
     }
 
+
+
+
+
     if ($oldversion < 2020062315) {
 
         // Define field closed to be added to lr_job_postings.
@@ -287,6 +291,62 @@ function xmldb_local_lecrec_upgrade($oldversion)
         upgrade_plugin_savepoint(true, 2020062315, 'local', 'lecrec');
     }
 
+    if ($oldversion < 2020062316) {
+
+        // Changing type of field private_tele on table lr_application to int.
+        $table = new xmldb_table('lr_application');
+        $field = new xmldb_field('private_tele', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'private_add_city');
+
+        // Launch change of type for field private_tele.
+        $dbman->change_field_type($table, $field);
+
+        // Lecrec savepoint reached.
+
+
+        // Changing type of field private_mobile on table lr_application to int.
+        $table = new xmldb_table('lr_application');
+        $field = new xmldb_field('private_mobile', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'private_tele');
+
+        // Launch change of type for field private_mobile.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field private_fax on table lr_application to int.
+        $table = new xmldb_table('lr_application');
+        $field = new xmldb_field('private_fax', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'private_email');
+
+        // Launch change of type for field private_fax.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field company_tele on table lr_application to int.
+        $table = new xmldb_table('lr_application');
+        $field = new xmldb_field('company_tele', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'company_add_city');
+
+        // Launch change of type for field company_tele.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field company_fax on table lr_application to int.
+        $table = new xmldb_table('lr_application');
+        $field = new xmldb_field('company_fax', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'company_tele');
+
+        // Launch change of type for field company_fax.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field private_phonenumber on table lr_lecturer to int.
+        $table = new xmldb_table('lr_lecturer');
+        $field = new xmldb_field('private_phonenumber', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'private_state');
+
+        // Launch change of type for field private_phonenumber.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field private_cellphone_number on table lr_lecturer to int.
+        $table = new xmldb_table('lr_lecturer');
+        $field = new xmldb_field('private_cellphone_number', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'private_phonenumber');
+
+        // Launch change of type for field private_cellphone_number.
+        $dbman->change_field_type($table, $field);
+        // Changing type of field business_phonenumber on table lr_lecturer to int.
+        $table = new xmldb_table('lr_lecturer');
+        $field = new xmldb_field('business_phonenumber', XMLDB_TYPE_INTEGER, '15', null, null, null, null, 'company');
+
+        // Launch change of type for field business_phonenumber.
+        $dbman->change_field_type($table, $field);
+        upgrade_plugin_savepoint(true, 2020062316, 'local', 'lecrec');
+    }
 
     return true;
 }
