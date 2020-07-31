@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+<!--TODO: Change telephone fields-->
 <XMLDB PATH="local/lecrec/db" VERSION="20200730" COMMENT="XMLDB file for Moodle local/lecrec"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"

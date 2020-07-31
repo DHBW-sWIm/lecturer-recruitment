@@ -5,12 +5,12 @@ require(dirname(__FILE__, 4) . '/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = filter_input_array(INPUT_POST);
+    $rowID = $input['rowID'];
+    $ID = $input['ID'];
 } else {
     $input = filter_input_array(INPUT_GET);
 }
 
-$rowID = $input['rowID'];
-$ID = $input['ID'];
 
 global $DB, $PAGE, $OUTPUT;
 
