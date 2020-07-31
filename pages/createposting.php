@@ -119,6 +119,7 @@ if ($mform->is_submitted()) {
         'director_id' => $user,
         'cp_name' => $data->contactperson,
         'cp_email' => $data->emailcontactperson,
+        'cp_phone' => $data->phonecontactperson,
         'sr_course_id' => $data->course,
         'timecreated' => time(),
         'usermodified' => $user
