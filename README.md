@@ -19,7 +19,9 @@ This plugin relies on courses data provided by the [Student Registration process
 
 \* Make sure that the content of the repository is under the root folder ```lecrec```
 ### Roles and Permissions 
-Users with the manager role can access the plugin and see it in their Moodle homepage
+* Users with the manager role can access the plugin and see it in their Moodle homepage*
+
+\* Please note that the admin user is a superuser and has all permissions assigned to it. Therefore, it is advised to creat a user with the role manager and use the plugin through it.
 
 ## Known Limitations
 
