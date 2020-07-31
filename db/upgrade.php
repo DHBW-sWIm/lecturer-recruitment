@@ -150,13 +150,13 @@ function xmldb_local_lecrec_upgrade($oldversion)
             $dbman->create_table($table);
         }
         // Rename field company on table lr_lecturer to NEWNAMEGOESHERE.
-          $table = new xmldb_table('lr_lecturer');
+        $table = new xmldb_table('lr_lecturer');
         //$field = new xmldb_field('company_id', XMLDB_TYPE_INTEGER, 9, null, null, null, null, 'private_mail');
 
         // Launch rename field company.
-         $dbman->rename_field($table, $field, 'company');
+        $dbman->rename_field($table, $field, 'company');
 
-         $field = new xmldb_field('company', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'private_mail');
+        $field = new xmldb_field('company', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'private_mail');
 
         //         Launch change of type for field company.
         $dbman->change_field_type($table, $field);
@@ -272,7 +272,7 @@ function xmldb_local_lecrec_upgrade($oldversion)
         upgrade_plugin_savepoint(true, 2020062314, 'local', 'lecrec');
     }
 
-  
+
 
 
 
@@ -291,7 +291,7 @@ function xmldb_local_lecrec_upgrade($oldversion)
         upgrade_plugin_savepoint(true, 2020062315, 'local', 'lecrec');
     }
 
-  if ($oldversion < 2020062316) {
+    if ($oldversion < 2020062316) {
 
         // Changing type of field private_tele on table lr_application to int.
         $table = new xmldb_table('lr_application');
@@ -301,7 +301,7 @@ function xmldb_local_lecrec_upgrade($oldversion)
         $dbman->change_field_type($table, $field);
 
         // Lecrec savepoint reached.
-       
+
 
         // Changing type of field private_mobile on table lr_application to int.
         $table = new xmldb_table('lr_application');
@@ -345,7 +345,7 @@ function xmldb_local_lecrec_upgrade($oldversion)
 
         // Launch change of type for field business_phonenumber.
         $dbman->change_field_type($table, $field);
- upgrade_plugin_savepoint(true, 2020062316, 'local', 'lecrec');
+        upgrade_plugin_savepoint(true, 2020062316, 'local', 'lecrec');
     }
 
     return true;

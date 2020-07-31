@@ -102,10 +102,10 @@ if ($mform->is_submitted()) {
         $end_date   = date("Y").'-09-01 00:00:00';
     }elseif ($data->semester == 'wise1'){
         $start_date= date("Y").'-10-01 00:00:00';
-        $end_date= date("Y+1").'-01-01 00:00:00';
+        $end_date= date('Y', strtotime('+1 years')).'-01-01 00:00:00';
     }else{
         $start_date= date("Y").'-11-01 00:00:00';
-        $end_date= date("Y+1").'-02-01 00:00:00';
+        $end_date= date('Y', strtotime('+1 years')).'-02-01 00:00:00';
     }
     $data->lr_subjects_id = $DB->get_record_select('lr_subjects', 'lr_module_id = ? AND lr_subject_name = ?', array($data->module, $_POST['subject']))->id;
     $data->description = $DB->get_record_select('lr_subjects', 'lr_module_id = ? AND lr_subject_name = ?', array($data->module, $_POST['subject']))->lr_description;
