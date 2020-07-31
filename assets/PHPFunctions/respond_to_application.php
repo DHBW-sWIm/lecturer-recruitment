@@ -16,11 +16,26 @@ if ($input['qualify']) {
     //TODO send email
 } elseif ($input['approve']) {
     $DB->update_record('lr_application', array('id' => $input['app_id'], 'status_of_application' => 'Accepted' , 'closed' => 0));
-    //TODO Add lecturer to pool
+
     $record = $DB->get_record_select('lr_application' , 'id = ?' , array($input['app_id']));
     $status = (object)$DB->get_record_select('lr_lecturer' , 'lastname = ? AND firstname = ? AND dateofbirth = ?' , array(
         $record->lname ,$record->fname,$record->date_of_birth
     ));
+    if (empty($from)) {
+        $from = 'Lecturer Recruitment';
+    }
+    $application = $DB->get_record('lr_application', array('id' => $input['app_id']));
+    $user = new stdClass();
+    $user->id = $USER->id;
+    $username = $DB->get_record('user', array('id' => $USER->id ))->username;
+    $user->username = $username;
+    $user->email = $application->private_email;
+    $form = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><style></style></head>';
+    $form .= '<body><span style="font-family: Arial; font-size: 10pt;">Dear ' . $application->fname . ',<br>';
+    $form .= '<br> We are glald to inform you that we want to offer you the position you applied for.<br>';
+    $form .= '<br>Kind regards<br>DHBW Mannheim';
+    email_to_user($user, $from, $data->subject, $form);
+
     if(empty($status)){
 
     $DB->insert_record('lr_lecturer' , array(
@@ -54,5 +69,21 @@ if ($input['qualify']) {
 
     $DB->update_record('lr_application', array('id' => $input['app_id'], 'status_of_application' => 'Rejected'));
     //TODO send email
+    if (empty($from)) {
+        $from = 'Lecturer Recruitment';
+    }
+    $application = $DB->get_record('lr_application', array('id' => $input['app_id']));
+    $user = new stdClass();
+    $user->id = $USER->id;
+    $username = $DB->get_record('user', array('id' => $USER->id ))->username;
+    $user->username = $username;
+    $user->email = $application->private_email;
+    $form = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><style></style></head>';
+    $form .= '<body><span style="font-family: Arial; font-size: 10pt;">Dear ' . $application->fname . ',<br>';
+    $form .= '<br> We are sorry to inform you that we cannot offer you a position right now.<br>';
+    $form .= '<br>Kind regards<br>DHBW Mannheim';
+
+    email_to_user($user, $from, $data->subject, $form);
+    unset($_SESSION['InterviewDetails_app_id']);
     redirect('../../index.php');
 }
