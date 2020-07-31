@@ -3,7 +3,7 @@
 require(dirname(__FILE__, 4) . '/config.php');
 
 
-global $PAGE, $CFG;
+global $PAGE, $CFG, $USER;
 require_once("$CFG->libdir/formslib.php");
 
 $PAGE->set_context(context_system::instance());
@@ -12,7 +12,6 @@ $PAGE->set_title('Lecturer Recruitment');
 
 $context = context_system::instance();
 $user = $USER->id;
-
 $PAGE->set_heading("Interview Details");
 
 
@@ -28,6 +27,8 @@ class setInterview extends moodleform
         $app_id = $_SESSION['InterviewDetails_app_id'];
 
         $record = $DB->get_record('lr_application', array('id' => $app_id));
+        $mform->addElement('text', 'subject', 'Subject');
+        $mform->setType('subject', PARAM_RAW);
         $mform->addElement('editor', 'editor', 'Email Content');
         $mform->setType('editor', PARAM_RAW);
         //  $mform->addElement('textarea', 'editor', 'Send Response' , 'wrap="virtual" rows="18" cols="70"');
@@ -71,7 +72,18 @@ if ($mform->is_submitted()) {
         'timemodified' => time()
     ));
     //TODO send email to camunda
+    if (empty($from)) {
+        $from = 'Lecturer Recruitment';
+    }
+    $application = $DB->get_record('lr_application', array('id' => $app_id));
+    $user = new stdClass();
+    $user->id = $USER->id;
+    $username = $DB->get_record('user', array('id' => $USER->id ))->username;
+    $user->username = $username;
+    $user->email = $application->private_email;
+    $form = $data->editor['text'];
 
+    email_to_user($user, $from, $data->subject, $form);
     unset($_SESSION['InterviewDetails_app_id']);
     redirect('../index.php');
 };

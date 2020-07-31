@@ -172,7 +172,7 @@ if ($mform->is_submitted()) {
         $form = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><style></style></head>';
         $form .= '<body><span style="font-family: Arial; font-size: 10pt;">Dear ' . $user->first_name . ',<br>';
         $form .= '<br>A new person has applied to ' . $subject . '<br>';
-        $form .= '<b>Name:' . $input['title'] . ' ' . $input['firstname'] . ' ' . $input['lastname'] . '</b>';
+        $form .= '<b>Name: ' . $input['title'] . ' ' . $input['firstname'] . ' ' . $input['lastname'] . '</b><br>';
         $form .= '<br>Kind regards<br>DHBW Mannheim';
         email_to_user($user, $from, $title, $form);
         redirect(new moodle_url('/local/lecrec/pages/teachingpostings.php'));
