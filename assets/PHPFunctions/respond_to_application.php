@@ -35,8 +35,7 @@ if ($input['qualify']) {
     $form .= '<br>Kind regards<br>DHBW Mannheim';
     email_to_user($user, $from, $data->subject, $form);
 
-    if (‌‌empty(current($status))) {
-
+    if (empty(current($status))) {
         $DB->insert_record('lr_lecturer', array(
             'mdl_user_id' => 0,
             'self_employed' => 0,
@@ -63,7 +62,7 @@ if ($input['qualify']) {
         ));
     }
 
-    $DB->insert_record('lr_posting_assignment', array('lr_lecturer_id' => $status->id, 'lr_job_postings_id' => $input['app_id']));
+    $DB->insert_record('lr_posting_assignment', array('lr_lecturer_id' => $status->id, 'lr_job_postings_id' => $application->lr_job_postings_id));
 
 
     $DB->update_record('lr_job_postings', array('id' => $record->lr_job_postings_id, 'closed' => 1));

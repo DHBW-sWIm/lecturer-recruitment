@@ -22,8 +22,8 @@ $table->id = 'postings';
 //$table->attributes['class'] = 'table table-striped table-xl';
 $records = $DB->get_records_select("lr_job_postings", 'closed = ?', array('0'));
 
-$table->head = array('Vorlesung', 'Beschreibung', 'Qualifikation', 'Bedarf', 'Stunden pro Semester');
-$table->align = array('center', 'center', 'center', 'center', 'center');
+$table->head = array('Vorlesung', 'Beschreibung', 'Qualifikation','Course', 'Bedarf', 'Stunden pro Semester');
+$table->align = array('center', 'center', 'center', 'center', 'center','center');
 //TODO: Pagination
 //TODO: Search and/or filter
 $i = 0;
@@ -45,13 +45,17 @@ foreach ($records as $record) {
     $cell3->text = 'Bachelor in MINT Fach';
 
     $cell4 = new html_table_cell();
-    // $cell4->style = "min-width: 5%;";
-    $cell4->text = 'From ' . date('Y-m-d', strtotime($record->start_date)) . ' To ' . date('Y-m-d', strtotime($record->end_date));
+    $course = $DB->get_record_select("sr_active_study_course", 'id = ?', array($record->sr_course_id));
+    $cell4->text = $course->study_course_abbreviation;
+
     $cell5 = new html_table_cell();
+    // $cell5->style = "min-width: 5%;";
+    $cell5->text = 'From ' . date('Y-m-d', strtotime($record->start_date)) . ' To ' . date('Y-m-d', strtotime($record->end_date));
+    $cell6 = new html_table_cell();
 
-    $cell5->text = $record->expected_hours;
+    $cell6->text = $record->expected_hours;
 
-    $row->cells = array($cell1, $cell2, $cell3, $cell4, $cell5);
+    $row->cells = array($cell1, $cell2, $cell3, $cell4, $cell5,$cell6);
     $table->rowclasses[$record->id] = '';
     $table->data[] = $row;
 }

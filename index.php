@@ -64,9 +64,10 @@ if(has_capability('local/lecrec:manager', $context)){
     $tileposting->setButtonURL(new moodle_url('/local/lecrec/pages/createposting.php'));
 
     $tilecontract = new CreateTile();
-    $tilecontract->setTitle('Send and Sign Contracts');
-    $tilecontract->setButtonName('Demo');
-    $tilecontract->setButtonURL(new moodle_url('/local/lecrec/pages/sendcontract.php'));
+    //TODO:Implement a page to manage subjects and modules
+    $tilecontract->setTitle('Master Data Management');
+    $tilecontract->setButtonName('To be implemented');
+    $tilecontract->setButtonURL(new moodle_url('#'));
 
     $tileContainer = new TileContainer();
     $tileContainer->addTile($tilepool);

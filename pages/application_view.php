@@ -32,14 +32,21 @@ if (has_capability('local/lecrec:manager', $context)) {
     echo $OUTPUT->heading('Application');
     $record = $DB->get_record('lr_application', array('id' => $RecordID));
 }
+$icon = '010-mail.svg';
+$status = 'pending';
 if ($record->status_of_application === 'Rejected') {
     $interviewsent = 'active';
     $accepted = 'notactive';
+    $icon = '003-reject-2.svg';
+    $status = 'rejected';
 } elseif ($record->status_of_application === 'Accepted') {
     $interviewsent = 'active';
     $accepted = 'active';
+    $status = 'accepted';
 } elseif ($record->status_of_application === 'Invitation sent') {
     $interviewsent = 'active';
+
+
 }
 //$record->status_of_application
 echo html_writer::tag('br', '');
@@ -73,9 +80,9 @@ echo "<div id='tracking' class=\"card\">
                     <p class=\"font-weight-bold\">Invitation<br>sent </p>
                 </div>
             </div>
-            <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/010-mail.svg\">
+            <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/" . $icon . "\">
                 <div class=\"d-flex flex-column\">
-                    <p class=\"font-weight-bold\">Applicant<br>accepted</p>
+                    <p class=\"font-weight-bold\">Applicant<br>" . $status . "</p>
                 </div>
             </div>
         </div>
