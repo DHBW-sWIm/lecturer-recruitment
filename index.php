@@ -24,7 +24,7 @@
  */
 
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+require_once(dirname(__FILE__, 3) . '/config.php');
 require_once(__DIR__ . '/lib.php');
 require_once(__DIR__ . '/assets/PHPClasses/UI.php');
 
@@ -43,58 +43,44 @@ if(has_capability('local/lecrec:manager', $context)){
     $PAGE->set_heading('Lecturer Recruitment');
     echo $OUTPUT->header();
 
-    $tilelp = new CreateTile();
-    $tilelp->setTitle('Lecturer Pool');
-    $tilelp->setButtonName('Go To');
-    $tilelp->setButtonURL(new moodle_url('/local/lecrec/pages/lecturerpool.php'));
+    $tilepool = new CreateTile();
+    $tilepool->setTitle('Lecturer Pool');
+    $tilepool->setButtonName('Go To');
+    $tilepool->setButtonURL(new moodle_url('/local/lecrec/pages/lecturerpool.php'));
 
-    $tilesrp = new CreateTile();
-    $tilesrp->setTitle('Recruitment Processes');
-    $tilesrp->setButtonName('Go To');
-    $tilesrp->setButtonURL(new moodle_url('/local/lecrec/pages/recruitmentprocess.php'));
+    $tilerp = new CreateTile();
+    $tilerp->setTitle('Recruitment Processes');
+    $tilerp->setButtonName('Go To');
+    $tilerp->setButtonURL(new moodle_url('/local/lecrec/pages/recruitmentprocess.php'));
 
-    $tilestp = new CreateTile();
-    $tilestp->setTitle('Open Teaching Postings');
-    $tilestp->setButtonName('Go To');
-    $tilestp->setButtonURL(new moodle_url('/local/lecrec/pages/teachingpostings.php'));
+    $tileopenpos = new CreateTile();
+    $tileopenpos->setTitle('Open Teaching Postings');
+    $tileopenpos->setButtonName('Go To');
+    $tileopenpos->setButtonURL(new moodle_url('/local/lecrec/pages/teachingpostings.php'));
 
-    $tilestest = new CreateTile();
-    $tilestest->setTitle('Create New Posting');
-    $tilestest->setButtonName('Go To');
-    $tilestest->setButtonURL(new moodle_url('/local/lecrec/pages/createposting.php'));
+    $tileposting = new CreateTile();
+    $tileposting->setTitle('Create New Posting');
+    $tileposting->setButtonName('Go To');
+    $tileposting->setButtonURL(new moodle_url('/local/lecrec/pages/createposting.php'));
+
+    $tilecontract = new CreateTile();
+    $tilecontract->setTitle('Send and Sign Contracts');
+    $tilecontract->setButtonName('Demo');
+    $tilecontract->setButtonURL(new moodle_url('/local/lecrec/pages/sendcontract.php'));
 
     $tileContainer = new TileContainer();
-    $tileContainer->addTile($tilelp);
-    $tileContainer->addTile($tilesrp);
-    $tileContainer->addTile($tilestp);
-    $tileContainer->addTile($tilestest);
+    $tileContainer->addTile($tilepool);
+    $tileContainer->addTile($tilerp);
+    $tileContainer->addTile($tileopenpos);
+    $tileContainer->addTile($tileposting);
+    $tileContainer->addTile($tilecontract);
 
 
     $tileContainer->render();
 
     echo $OUTPUT->footer();
 
-}
-elseif (isguestuser()){
-    $PAGE->set_heading('Lecturer Recruitment');
-    echo $OUTPUT->header();
 
-    $tilestp = new CreateTile();
-    $tilestp->setTitle('Open Teaching Postings');
-    $tilestp->setButtonName('Go To');
-    $tilestp->setButtonURL(new moodle_url('/local/lecrec/pages/teachingpostings.php'));
-
-    $tilestest = new CreateTile();
-    $tilestest->setTitle('Test');
-    $tilestest->setButtonName('Go To');
-    $tilestest->setButtonURL(new moodle_url('/local/lecrec/pages/testpage.php'));
-
-    $tileContainer = new TileContainer();
-    $tileContainer->addTile($tilestp);
-    $tileContainer->addTile($tilestest);
-    $tileContainer->render();
-
-    echo $OUTPUT->footer();
 }
 else {
     redirect($CFG->wwwroot);

@@ -8,7 +8,7 @@ $PAGE->set_title('Lecturer Recruitment');
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/teachingpostings.php');
 $PAGE->set_title('Lecturer Recruitment');
-$PAGE->requires->css('/local/lecrec/assets/css/jquery.dataTables.min.css');
+$PAGE->requires->css('/local/lecrec/assets/CSS/jquery.dataTables.min.css');
 $PAGE->requires->jquery();
 $PAGE->requires->js('/local/lecrec/assets/js/jquery.dataTables.min.js', true);
 echo $OUTPUT->header();

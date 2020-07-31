@@ -1,6 +1,6 @@
 <?php
 
-require(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
+require(dirname(__FILE__, 4) . '/config.php');
 
 
 global $PAGE, $CFG;

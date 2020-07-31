@@ -1,7 +1,5 @@
 <?php
 
-use core_customfield\data;
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = filter_input_array(INPUT_POST);
 } else {
@@ -162,7 +160,6 @@ if ($mform->is_cancelled()) {
     redirect($url);
 } else if ($fromform = $mform->get_data()) {
     //In this case you process validated data. $mform->get_data() returns data posted in form.
-    print_r($fromform);
 }
 if ($mform->is_submitted()) {
     $data = $mform->get_data();

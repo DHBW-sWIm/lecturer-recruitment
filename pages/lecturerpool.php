@@ -1,6 +1,6 @@
 <?php
 
-require(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
+require(dirname(__FILE__, 4) . '/config.php');
 require_login();
 
 
@@ -10,7 +10,10 @@ global $DB, $PAGE, $OUTPUT, $CFG, $USER;
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/lecturerpool.php');
 $PAGE->set_title('Lecturer Recruitment');
+$PAGE->requires->css('/local/lecrec/assets/CSS/jquery.dataTables.min.css');
 $PAGE->requires->jquery();
+$PAGE->requires->js('/local/lecrec/assets/js/jquery.dataTables.min.js', true);
+
 
 $context = context_system::instance();
 $user = $USER->id;
@@ -126,12 +129,11 @@ if (has_capability('local/lecrec:manager', $context)) {
                     '<input type="hidden" name="record_id" value="' + record_id + '"></input>' + '</form>');
                 $('body').append(form);
                 $(form).submit();
-
             });
-
         });
-
-
+    });
+    $(document).ready(function() {
+        $('#my-table').DataTable();
     });
 </script>
 

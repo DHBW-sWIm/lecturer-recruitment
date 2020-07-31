@@ -1,6 +1,6 @@
 <?php
 global $PAGE;
-require(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
+require(dirname(__FILE__, 4) . '/config.php');
 require_once("$CFG->libdir/formslib.php");
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/createposting.php');

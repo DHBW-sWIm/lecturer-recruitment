@@ -1,5 +1,5 @@
 <?php
-require(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
+require(dirname(__FILE__, 4) . '/config.php');
 require_login();
 //include('../tables/tablerecruitmentprocess.php');
 //include_once('../table.php');
@@ -9,7 +9,7 @@ global $DB, $PAGE, $OUTPUT, $CFG, $USER;
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url('/local/lecrec/pages/recruitmentprocess.php');
 $PAGE->set_title('Lecturer Recruitment');
-$PAGE->requires->css('/local/lecrec/assets/css/jquery.dataTables.min.css');
+$PAGE->requires->css('/local/lecrec/assets/CSS/jquery.dataTables.min.css');
 $PAGE->requires->jquery();
 $PAGE->requires->js('/local/lecrec/assets/js/jquery.dataTables.min.js',true);
 
