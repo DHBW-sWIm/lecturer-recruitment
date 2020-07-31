@@ -32,15 +32,11 @@ if (has_capability('local/lecrec:manager', $context)) {
     echo $OUTPUT->heading('Application');
     $record = $DB->get_record('lr_application', array('id' => $RecordID));
 }
-if ($record->status_of_application === 'Waiting to interview') {
-    $waiting = 'active';
-} elseif ($record->status_of_application === 'Interviewed') {
-    $waiting = 'active';
-    $interviewed = 'active';
+if ($record->status_of_application === 'Rejected') {
+    $interviewsent = 'active';
+    $accepted = 'notactive';
 } elseif ($record->status_of_application === 'Accepted') {
-    $waiting = 'active';
-    $interviewsent= 'active';
-    $interviewed = 'active';
+    $interviewsent = 'active';
     $accepted = 'active';
 } elseif ($record->status_of_application === 'Invitation sent') {
     $interviewsent = 'active';
@@ -62,9 +58,7 @@ echo "<div id='tracking' class=\"card\">
                 <ul id=\"progressbar\" class=\"text-center\">
                     <li class=\"active step0\"></li>
                     <li class=\"" . $interviewsent . " step0\"></li>
-                    <li class=\"" . $waiting . " step0\"></li> 
-                    <li class=\"" . $interviewed . " step0\"></li>
-                    <li class=\"" . $accepted . " step0\"></li>
+                    <li class=\"" . $accepted . " step0\"></li>          
                 </ul>
             </div>
         </div>
@@ -77,16 +71,6 @@ echo "<div id='tracking' class=\"card\">
             <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/mail-send.svg\">
                 <div class=\"d-flex flex-column\">
                     <p class=\"font-weight-bold\">Invitation<br>sent </p>
-                </div>
-            </div>
-            <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/007-chronometer-1.svg\">
-                <div class=\"d-flex flex-column\">
-                    <p class=\"font-weight-bold\">Waiting to <br>interview</p>
-                </div>
-            </div>
-            <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/008-job-interview.svg\">
-                <div class=\"d-flex flex-column\">
-                    <p class=\"font-weight-bold\">Interviewed</p>
                 </div>
             </div>
             <div class=\"row d-flex icon-content\"> <img class=\"icon\" src=\"../assets/images/010-mail.svg\">
@@ -192,7 +176,7 @@ if ($record->status_of_application == 'Invitation sent') {
 <input type ="submit" name="reject" class="btn btn-danger" value="Reject">
 </div>
 </from>';
-} else if ($record->status_of_application == 'Applied'){
+} else if ($record->status_of_application == 'Applied') {
     echo '<br><form action="../assets/PHPFunctions/respond_to_application.php" method="post">
 <div class="row mx-auto">
 <input name="app_id" value="' . $RecordID . '" hidden>
@@ -200,7 +184,7 @@ if ($record->status_of_application == 'Invitation sent') {
 <input type ="submit" name="reject" class="btn btn-danger" value="Reject">
 </div>
 </from>';
-}else if($record->status_of_application =='Waiting to interview'){
+} else if ($record->status_of_application == 'Waiting to interview') {
     echo '<br><form action="../assets/PHPFunctions/respond_to_application.php" method="post">
 <div class="row mx-auto">
 <input name="app_id" value="' . $RecordID . '" hidden>

@@ -83,7 +83,7 @@ if ($mform->is_submitted()) {
     $user->email = $application->private_email;
     $form = $data->editor['text'];
 
-    email_to_user($user, $from, $data->subject, $form);
+    email_to_user($user, $from, $data->subject, null, $from);
     unset($_SESSION['InterviewDetails_app_id']);
     redirect('../index.php');
 };
