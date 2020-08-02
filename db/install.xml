@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--TODO: Change telephone fields-->
-<XMLDB PATH="local/lecrec/db" VERSION="20200730" COMMENT="XMLDB file for Moodle local/lecrec"
+<XMLDB PATH="local/lecrec/db" VERSION="20200802" COMMENT="XMLDB file for Moodle local/lecrec"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
->
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
   <TABLES>
-    <TABLE NAME="dg_company" COMMENT="dg_company table retrofitted from MySQL">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="company_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="classification" TYPE="char" LENGTH="8" NOTNULL="false" DEFAULT="B" SEQUENCE="false"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
     <TABLE NAME="lr_lecturer" COMMENT="lr_lecturer table retrofitted from MySQL">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="true"/>
@@ -43,7 +31,6 @@
       <KEYS>
         <KEY NAME="pk" TYPE="primary" FIELDS="id"/>
         <KEY NAME="fk_mdl_user_id" TYPE="foreign" FIELDS="mdl_user_id" REFTABLE="user" REFFIELDS="id"/>
-        <KEY NAME="dg_company_id" TYPE="foreign" FIELDS="dg_company_id" REFTABLE="dg_company" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
     <TABLE NAME="lr_module" COMMENT="Default comment for the table, please edit me">
@@ -139,41 +126,11 @@
         <FIELD NAME="usermodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="interview_date" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="interview_street" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="interview_city" TYPE="char" LENGTH="45" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="interview_city_zip" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="pk" TYPE="primary" FIELDS="id"/>
         <KEY NAME="fk_lr_job_postings_id" TYPE="foreign" FIELDS="lr_job_postings_id" REFTABLE="lr_job_postings" REFFIELDS="id"/>
         <KEY NAME="usermodified" TYPE="foreign" FIELDS="usermodified" REFTABLE="user" REFFIELDS="id"/>
-      </KEYS>
-    </TABLE>
-    <TABLE NAME="sr_study_programs" COMMENT="sr_study_programs table retrofitted from MySQL">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="study_program_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="description" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="valid_from" TYPE="datetime" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="valid_to" TYPE="datetime" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="old" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
-    </TABLE>
-    <TABLE NAME="sr_study_fields" COMMENT="sr_study_fields table retrofitted from MySQL">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="18" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="study_field_name" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="description" TYPE="char" LENGTH="455" NOTNULL="false" SEQUENCE="false"/>
-        <FIELD NAME="old" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="sr_study_programs_id" TYPE="int" LENGTH="18" NOTNULL="false" SEQUENCE="false"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-        <KEY NAME="sr_study_programs_id" TYPE="foreign" FIELDS="sr_study_programs_id" REFTABLE="sr_study_programs" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
     <TABLE NAME="lr_subj_field_asgnmt" COMMENT="lr_subjects_field_assignments table retrofitted from MySQL">
@@ -185,7 +142,6 @@
       <KEYS>
         <KEY NAME="pk" TYPE="primary" FIELDS="id"/>
         <KEY NAME="fk_lr_subjects_id" TYPE="foreign" FIELDS="lr_subjects_id" REFTABLE="lr_subjects" REFFIELDS="id"/>
-        <KEY NAME="sr_study_field_id" TYPE="foreign" FIELDS="sr_study_field_id" REFTABLE="sr_study_fields" REFFIELDS="id"/>
       </KEYS>
     </TABLE>
   </TABLES>
