@@ -6,7 +6,7 @@ A [Moodle](https://moodle.org/) plugin for managing lecturer recruitment at [DHB
 ## How to use it?
 
 ### Dependencies
-This plugin relies on courses data provided by the [Student Registration process](https://github.com/DHBW-sWIm/student-registration-moodle-17). Therefore, please install the aforementioned plugin first.
+This plugin relies on courses data provided by the [Student Registration process 2019/2020](https://github.com/DHBW-sWIm/student-registration-moodle-17). Therefore, please install the aforementioned plugin first.
 
 ### Installation Steps
 1. Download the repository as a zip archive
