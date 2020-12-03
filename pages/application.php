@@ -1,5 +1,7 @@
 <?php
 
+//Bewerberformular
+
 require(dirname(__FILE__, 4) . '/config.php');
 require_once("$CFG->libdir/formslib.php");
 global $PAGE, $DB, $USER;
@@ -38,79 +40,79 @@ class addlecturer extends moodleform
         $mform = $this->_form; // Don't forget the underscore!
 
 
-        $mform->addElement('text', 'title', 'Title', 'size="50"');
+        $mform->addElement('text', 'title', 'Titel', 'size="50"');
         $mform->setType('title', PARAM_NOTAGS);
-        $mform->addElement('text', 'lastname', 'Last Name', 'size="50"');
+        $mform->addElement('text', 'lastname', 'Nachname', 'size="50"');
         $mform->setType('lastname', PARAM_NOTAGS);
-        $mform->addElement('text', 'firstname', 'First Name', 'size="50"');
+        $mform->addElement('text', 'firstname', 'Vorname', 'size="50"');
         $mform->setType('firstname', PARAM_NOTAGS);
-        $mform->addElement('date_selector', 'dateofbirth', 'Date of Birth ');
-        $mform->addElement('text', 'place_of_birth', 'Place of Birth ');
+        $mform->addElement('date_selector', 'dateofbirth', 'Geburtsdatum');
+        $mform->addElement('text', 'place_of_birth', 'Geburtsort');
         //  $mform->addElement('advcheckbox', 'self_employed', 'Self Employed', 'Check if self employed', '', array(0, 1));
         $private_address = array();
-        $mform->addGroup($private_address, null, 'Private Data', null, false);
-        $mform->addElement('text', 'private_street', 'Street and Nr.', 'size="50"');
+        $mform->addGroup($private_address, null, 'Private Informationen', null, false);
+        $mform->addElement('text', 'private_street', 'Starße und Hausnummer', 'size="50"');
         $mform->setType('private_street', PARAM_NOTAGS);
-        $mform->addElement('text', 'private_postalcode', 'Postal Code', 'size="50"');
+        $mform->addElement('text', 'private_postalcode', 'Postleitzahl', 'size="50"');
         $mform->addRule('private_postalcode', null, 'numeric', null, 'client');
         $mform->addRule('private_postalcode', 'Only numbers are allowed', 'required', null, 'client');
         $mform->addRule('private_postalcode', null, 'minlength', 5, 'client');
         $mform->addRule('private_postalcode', null, 'maxlength', 5, 'client');
-        $mform->addElement('text', 'private_city', 'City', 'size="50"');
+        $mform->addElement('text', 'private_city', 'Ort', 'size="50"');
         $mform->setType('private_city', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'private_phonenumber', 'Private Phone Number', 'size="50"');
+        $mform->addElement('text', 'private_phonenumber', 'Private Telefonnummer', 'size="50"');
         $mform->addRule('private_phonenumber', null, 'numeric', null, 'client');
         $mform->setType('private_phonenumber', PARAM_NOTAGS);
-        $mform->addElement('text', 'private_cellphone_number', 'Cellphone Number', 'size="50"');
+        $mform->addElement('text', 'private_cellphone_number', 'Private Handynummer', 'size="50"');
         $mform->addRule('private_cellphone_number', null, 'numeric', null, 'client');
         $mform->setType('private_cellphone_number', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'private_fax', 'Private Fax', 'size="50"');
+        $mform->addElement('text', 'private_fax', 'Private Faxnummer', 'size="50"');
         $mform->setType('private_fax', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'private_mail', 'Private Email', 'size="50"');
+        $mform->addElement('text', 'private_mail', 'Private E-Mail Adresse', 'size="50"');
         $mform->addRule('private_mail', null, 'email', null, 'client');
         $business_address = array();
-        $mform->addGroup($business_address, null, 'Work Data', null, false);
-        $mform->addElement('text', 'business_street', 'Street and Nr.', 'size="50"');
+        $mform->addGroup($business_address, null, 'Geschäftliche Informationen', null, false);
+        $mform->addElement('text', 'business_street', 'Straße und Hausnummer', 'size="50"');
         $mform->setType('business_street', PARAM_NOTAGS);
-        $mform->addElement('text', 'business_postalcode', 'Postal Code', 'size="50"');
+        $mform->addElement('text', 'business_postalcode', 'Postleitzahl', 'size="50"');
         $mform->addRule('business_postalcode', null, 'numeric', null, 'client');
         $mform->addRule('business_postalcode', 'Only numbers are allowed', 'required', null, 'client');
         $mform->addRule('business_postalcode', null, 'minlength', 5, 'client');
         $mform->addRule('business_postalcode', null, 'maxlength', 5, 'client');
-        $mform->addElement('text', 'business_city', 'City', 'size="50"');
+        $mform->addElement('text', 'business_city', 'Ort', 'size="50"');
         $mform->setType('business_city', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'job', 'Job', 'size="50"');
+        $mform->addElement('text', 'job', 'Beruf', 'size="50"');
         $mform->setType('job', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'business_phonenumber', 'Work Phone Number', 'size="50"');
+        $mform->addElement('text', 'business_phonenumber', 'Geschäftliche Telefonnummer', 'size="50"');
         $mform->addRule('business_phonenumber', null, 'numeric', null, 'client');
         $mform->setType('business_phonenumber', PARAM_NOTAGS);
-        $mform->addElement('text', 'company', 'Company Name', 'size="50"');
+        $mform->addElement('text', 'company', 'Firmenname', 'size="50"');
         $mform->setType('company', PARAM_NOTAGS);
-        $mform->addElement('text', 'business_mail', 'Work Email', 'size="50"');
-        $mform->addElement('text', 'company_fax', 'Company Fax', 'size="50"');
+        $mform->addElement('text', 'business_mail', 'Geschäftliche E-Mail Adresse', 'size="50"');
+        $mform->addElement('text', 'company_fax', 'Geschäftliche Faxnummer', 'size="50"');
         $mform->setType('company_fax', PARAM_NOTAGS);
         $mform->addRule('business_mail', null, 'email', null, 'client');
 
-        $mform->addElement('text', 'subject_area', 'Education', 'size="50"');
+        $mform->addElement('text', 'subject_area', 'Ausbildung', 'size="50"');
         $mform->setType('subject_area', PARAM_NOTAGS);
 
-        $mform->addElement('textarea', 'previous_teaching_activities', 'Previous Teaching Activities', 'wrap="virtual" rows="8" cols="70"');
+        $mform->addElement('textarea', 'previous_teaching_activities', 'Vorherige Lehrtätigkeiten', 'wrap="virtual" rows="8" cols="70"');
         $mform->setType('previous_teaching_activities', PARAM_NOTAGS);
-        $mform->addElement('textarea', 'professional_activities', 'Professional Activities', 'wrap="virtual" rows="8" cols="70"');
+        $mform->addElement('textarea', 'professional_activities', 'Berufliche Tätigkeiten', 'wrap="virtual" rows="8" cols="70"');
         $mform->setType('professional_activities', PARAM_NOTAGS);
-        $mform->addElement('textarea', 'education', 'Subjects you\'re interested in teaching', 'wrap="virtual" rows="8" cols="70"');
+        $mform->addElement('textarea', 'education', 'Fächer, die Sie unterrichten möchten', 'wrap="virtual" rows="8" cols="70"');
         $mform->setType('education', PARAM_NOTAGS);
 
 
         unset($_SESSION['data']);
         $buttonarray = array();
-        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Save');
-        $buttonarray[] = $mform->createElement('cancel');
+        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Sichern');
+        $buttonarray[] = $mform->createElement('Abbrechen');
         $mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
     }
 
@@ -168,12 +170,12 @@ if ($mform->is_submitted()) {
         $managerid = $posting->director_id;
         $subject = $DB->get_record('lr_subjects', array('id' => $posting->lr_subjects_id))->lr_subject_name;
         $user = $DB->get_record('user', array('id' => $managerid));
-        $title = 'New Application Received';
+        $title = 'Neue Bewerbung erhalten';
         $form = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><style></style></head>';
         $form .= '<body><span style="font-family: Arial; font-size: 10pt;">Dear ' . $user->first_name . ',<br>';
-        $form .= '<br>A new person has applied to ' . $subject . '<br>';
+        $form .= '<br>Eine neuer Bewerber für ' . $subject . '<br>';
         $form .= '<b>Name: ' . $input['title'] . ' ' . $input['firstname'] . ' ' . $input['lastname'] . '</b><br>';
-        $form .= '<br>Kind regards<br>DHBW Mannheim';
+        $form .= '<br>Mit freundlichen Grüßen<br>DHBW Mannheim';
         email_to_user($user, $from, $title, $form);
         redirect(new moodle_url('/local/lecrec/pages/teachingpostings.php'));
     } catch (Exception $ex) {

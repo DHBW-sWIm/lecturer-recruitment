@@ -30,7 +30,7 @@ if (has_capability('local/lecrec:manager', $context)) {
     $PAGE->navbar->add('Recruitment Processes', new moodle_url('/local/lecrec/pages/recruitmentprocess.php'));
 
     echo $OUTPUT->header();
-    echo $OUTPUT->heading('Lecturer Applications');
+    echo $OUTPUT->heading('Bewerbungen');
     echo '<br>';
 
 
@@ -39,7 +39,7 @@ if (has_capability('local/lecrec:manager', $context)) {
     $table->attributes['class'] = 'table table-sm ';
 
     $records = $DB->get_records_select("lr_application", 'lr_job_postings_id = ? AND closed = 0', array($RecordID));
-    $table->head = array('Name', 'company', 'Education', 'Application Status');
+    $table->head = array('Name', 'Firma', 'Ausbildung', 'Bewerbungsstatus');
     $table->align = array('left', 'left', 'left', 'left');
 
 

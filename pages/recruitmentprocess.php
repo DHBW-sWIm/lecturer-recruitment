@@ -23,7 +23,7 @@ if (has_capability('local/lecrec:manager', $context)) {
 
 
     echo $OUTPUT->header();
-    echo $OUTPUT->heading('Recruitment Processes');
+    echo $OUTPUT->heading('Recruitment Prozesse');
 
 
 
@@ -32,8 +32,8 @@ if (has_capability('local/lecrec:manager', $context)) {
   //  $table->attributes['class'] = 'table table-sm ';
 
     $records = $DB->get_records_select("lr_job_postings", 'director_id = ?', array($user));
-    $table->head = array('Posting Name', 'Expected Hours','Course', 'Number of Applications');
-    $table->align = array('center', 'center', 'center');
+    $table->head = array('Fach', 'Erwartete Lehrstunden','Kurs', 'Bewerberanzahl');
+    $table->align = array('center', 'center', 'center', 'center');
 
 
 

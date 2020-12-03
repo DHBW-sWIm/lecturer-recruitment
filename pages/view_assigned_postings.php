@@ -26,7 +26,7 @@ if (has_capability('local/lecrec:manager', $context)) {
     $PAGE->navbar->add('Lecturer Pool', new moodle_url('/local/lecrec/pages/lecturerpool.php', array('id' => $user)));
 
     echo $OUTPUT->header();
-    echo $OUTPUT->heading('Previously Assigned Postings');
+    echo $OUTPUT->heading('Zuvor zugewiesene Stellen');
     $record_id = $input['record_id'];
     $table = new html_table();
     $table->id = 'my-table';
@@ -42,7 +42,7 @@ if (has_capability('local/lecrec:manager', $context)) {
     $records = $DB->get_records_sql($sql);
 
 
-    $table->head = array('Module', 'Subject', 'Expected Hours', 'Course');
+    $table->head = array('Modul', 'Fach', 'Erwartete Unterrichtsstunden', 'Kurs');
     $table->align = array('center', 'center', 'center', 'center');
 
 

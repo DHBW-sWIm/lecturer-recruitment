@@ -10,7 +10,7 @@ $PAGE->requires->jquery();
 $context = context_system::instance();
 $user = $USER->id;
 
-$PAGE->set_heading("Create a job posting");
+$PAGE->set_heading("Stellenausschreibung erstellen");
 
 
 class createposting extends moodleform
@@ -38,38 +38,38 @@ class createposting extends moodleform
         }
         $subjects[] = null;
 
-        $mform->addElement('select', 'module', 'Module', $modules, array('onchange' => 'javascript:loadSubjects();'));
-        $mform->addElement('select', 'subject', 'Subject', [], array('onchange' => 'javascript:loadContent();')); // Add elements to your form
+        $mform->addElement('select', 'module', 'Modul', $modules, array('onchange' => 'javascript:loadSubjects();'));
+        $mform->addElement('select', 'subject', 'Fach', [], array('onchange' => 'javascript:loadContent();')); // Add elements to your form
         $mform->setType('subject', PARAM_NOTAGS);
 
-        $mform->addElement('select', 'course', 'course', $course); // Add elements to your form
+        $mform->addElement('select', 'course', 'Kurs', $course); // Add elements to your form
         $mform->setType('course', PARAM_NOTAGS);   //Set type of element
 
         $mform->addElement('select', 'semester', 'Semester', ['sose1'=>'Summer Semester A' , 'sose2'=>'Summer Semester B' , 'wise1' => 'Winter Semester A', 'wise2' => 'Winter Semester B'] ); // Add elements to your form
         $mform->setType('course', PARAM_NOTAGS);   //Set type of element
 
-        $mform->addElement('advcheckbox', 'external', 'External', 'Check if posting is open for external applications', '', array(0, 1));
+        $mform->addElement('advcheckbox', 'external', 'Extern', 'Check if posting is open for external applications', '', array(0, 1));
 
-        $mform->addElement('text', 'contactperson', 'Contact Person', 'size="50"');
+        $mform->addElement('text', 'contactperson', 'Kontaktperson', 'size="50"');
         $mform->setType('contactperson', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'emailcontactperson', 'E-Mail Contact Person', 'size="50"');
+        $mform->addElement('text', 'emailcontactperson', 'E-Mail Kontaktperson', 'size="50"');
         $mform->addRule('emailcontactperson', null, 'email',null, 'client');
         $mform->setType('emailcontactperson', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'phonecontactperson', 'Contact Person Phone', 'size="50"');
+        $mform->addElement('text', 'phonecontactperson', 'Telefon Kontaktperson', 'size="50"');
         $mform->addRule('phonecontactperson', null, 'numeric',null, 'client');
         $mform->setType('emailcontactperson', PARAM_NOTAGS);
 
-        $mform->addElement('text', 'expected_hours', 'Expected Hours', 'size="50"');
+        $mform->addElement('text', 'expected_hours', 'Erwartete Stunden', 'size="50"');
         $mform->setType('expected_hours', PARAM_NOTAGS);
 
-        $mform->addElement('textarea', 'description', 'Description' ,'wrap="virtual" rows="8" cols="70"');
+        $mform->addElement('textarea', 'description', 'Beschreibung' ,'wrap="virtual" rows="8" cols="70"');
         $mform->setType('description', PARAM_NOTAGS);
 
         $buttonarray = array();
-        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Save');
-        $buttonarray[] = $mform->createElement('cancel');
+        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Sichern');
+        $buttonarray[] = $mform->createElement('Abbrechen');
         $mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
     }
     //Custom validation should be added here

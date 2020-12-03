@@ -44,7 +44,7 @@ if (has_capability('local/lecrec:manager', $context)) {
     $records = $DB->get_records_sql($sql);
     //$records = $DB->get_records("lr_lecturer");
 
-    $table->head = array('ID', 'First Name', 'Last Name', 'Professional Activities', 'Subject Area', 'Company');
+    $table->head = array('ID', 'Vorname', 'Nachname', 'Berufliche Tätigkeiten', 'Facbereich', 'Firma');
     $table->align = array('center', 'center', 'center', 'center', 'center', 'center');
 
     $i = 0;
@@ -109,12 +109,12 @@ if (has_capability('local/lecrec:manager', $context)) {
 
     $(function() {
 
-        $('#my-table thead tr').append('<td class="pull-right"><b>View Applications</b></td>');
+        $('#my-table thead tr').append('<td class="pull-right"><b>Vorige Dozentenstellen</b></td>');
 
         i = 0;
         $('#my-table tr[record_id]').each(function() {
             i++;
-            $(this).append('<td id="application' + i + '" style="cursor: pointer;"><button type="button" class="btn btn-default pull-right" style="cursor: pointer;">View</button></td>');
+            $(this).append('<td id="application' + i + '" style="cursor: pointer;"><button type="button" class="btn btn-default pull-right" style="cursor: pointer;">Öffnen</button></td>');
             $('#application' + i + '').css('cursor', 'pointer').hover(
                 function() {
                     $(this).addClass('active');

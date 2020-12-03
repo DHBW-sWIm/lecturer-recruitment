@@ -27,16 +27,16 @@ class setInterview extends moodleform
         $app_id = $_SESSION['InterviewDetails_app_id'];
 
         $record = $DB->get_record('lr_application', array('id' => $app_id));
-        $mform->addElement('text', 'subject', 'Subject');
+        $mform->addElement('text', 'subject', 'Betreff');
         $mform->setType('subject', PARAM_RAW);
-        $mform->addElement('editor', 'editor', 'Email Content');
+        $mform->addElement('editor', 'editor', 'E-Mail Inhalt');
         $mform->setType('editor', PARAM_RAW);
         //  $mform->addElement('textarea', 'editor', 'Send Response' , 'wrap="virtual" rows="18" cols="70"');
 
 
         $buttonarray = array();
-        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Send');
-        $buttonarray[] = $mform->createElement('cancel');
+        $buttonarray[] = $mform->createElement('submit', 'submitbutton', 'Senden');
+        $buttonarray[] = $mform->createElement('Abbrechen');
         $mform->addGroup($buttonarray, 'buttonar', '', ' ', false);
 
 
@@ -68,7 +68,7 @@ if ($mform->is_submitted()) {
 
     $DB->update_record('lr_application', (object)array(
         'id' => $app_id,
-        'status_of_application' => 'Invitation sent',
+        'status_of_application' => 'Einladung versandt',
         'timemodified' => time()
     ));
     //TODO send email to camunda
